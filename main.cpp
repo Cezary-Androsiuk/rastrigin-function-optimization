@@ -63,15 +63,15 @@ int main()
     }
 
 
-    // /// Selected Population - Ranking
-    // {
-    //     Selection::ranking(chromosomes, functionOutputs, selectedChromosomes);
-    //     Generate::generateFunctionValues(selectedChromosomes, functionInputs, functionOutputs);
+    /// Selected Population - Ranking
+    {
+        Selection::ranking(chromosomes, functionOutputs, selectedChromosomes);
+        Generate::generateFunctionValues(selectedChromosomes, functionInputs, functionOutputs);
         
-    //     printf("\n" "selected population by ranking:\n");
-    //     printData(selectedChromosomes, functionInputs, functionOutputs);
-    //     printf("\n");
-    // }
+        printf("\n" "selected population by ranking:\n");
+        printData(selectedChromosomes, functionInputs, functionOutputs);
+        printf("\n");
+    }
 
 
     /// Selected Population - Roulette
@@ -110,9 +110,3 @@ int main()
     
     printf("finished\n");
 }
-
-
-
-// jak posortować malejąco te dwie tablice porównując wartości względem functionOutputs?
-// std::string chromosomes[constants::populationSize];
-// double functionOutputs[constants::populationSize];

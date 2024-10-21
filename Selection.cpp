@@ -150,6 +150,7 @@ void Selection::ranking(
     for(int i=0; i<constants::populationSize; i++)
     {
         uint rnd1 = rand() % constants::populationSize;
+        rnd1++; // can't be 0 and rnd1 value can be just like constants::populationSize for rnd2
         uint rnd2 = rand() % rnd1;
         chromosomesOut[i] = chromosomesSorted[rnd2];
     }
@@ -173,43 +174,41 @@ void Selection::roulette(
 {
     constexpr uint popSize = constants::populationSize;
 
-    double F = 0;
-    for(int i=0; i<popSize; i++)
-        F += functionOutputsIn[i];
-
-    double p[popSize];
-    for(int i=0; i<popSize; i++)
-        p[i] = functionOutputsIn[i] / F;
-    
-    double q[popSize];
+    double f[popSize]; // values of function output
     if(constants::lookingFor)// maximum is 1, minimum is 0
     {
         for(int i=0; i<popSize; i++)
-        {
-            double pSum = 0;
-            for(int j=0; j<i+1; j++)
-            {
-                pSum += p[j];
-            }
-            q[i] = pSum;
-        }
+            f[i] = functionOutputsIn[i];
     }
     else
     {
+        // for minimum inverse values
         for(int i=0; i<popSize; i++)
+            f[i] = 1/functionOutputsIn[i];
+    }
+
+    double F = 0; // sum function outputs
+    for(int i=0; i<popSize; i++)
+        F += f[i];
+
+    double p[popSize]; // propability of chromosome depending on function output
+    for(int i=0; i<popSize; i++)
+        p[i] = f[i] / F;
+    
+    double q[popSize]; // distributor of propability
+    for(int i=0; i<popSize; i++)
+    {
+        double pSum = 0;
+        for(int j=0; j<i+1; j++)
         {
-            double pSum = 0;
-            for(int j=0; j<i+1; j++)
-            {
-                pSum += p[popSize -j -1];
-            }
-            q[i] = pSum;
+            pSum += p[j];
         }
+        q[i] = pSum;
     }
     q[popSize-1] = 1; // correction
 
     // for(int i=0; i<popSize; i++)
-    //     printf("q[%d] = % 10g\n", i, q[i]);
+    //     printf("%d F=% 10g, p=% 10g, q=% 10g\n", i, functionOutputsIn[i], p[i], q[i]);
 
     std::random_device rd;
     std::mt19937 gen(rd());
@@ -218,7 +217,6 @@ void Selection::roulette(
 
     for(int i=0; i<popSize; i++)
     {
-        printf("%g\n", q[i]);
         double randomValue = dis(gen);
         // printf("rnd: % 10g\n", randomValue);
         
