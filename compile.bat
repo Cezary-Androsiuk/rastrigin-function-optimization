@@ -1,0 +1,1 @@
+g++ main.cpp Selection.cpp Generate.cpp Constants.cpp Mutation.cpp  -o main.exe
