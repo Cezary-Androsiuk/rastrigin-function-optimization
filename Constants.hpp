@@ -38,6 +38,9 @@ namespace constants{ //* can be modified to adjust program
     // mutation
     constexpr double mutationProbability = 0.03;
     constexpr double inversionProbability = 0.15;
+
+    // crossbreeding
+    constexpr double involvementCrossbreedingProbability = 0.6; //* prefered larger than 0.5
 }
 
 /**

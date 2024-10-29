@@ -1,1 +1,1 @@
-g++ main.cpp Selection.cpp Generate.cpp Constants.cpp Mutation.cpp  -o main.exe
+g++ main.cpp Selection.cpp Generate.cpp Constants.cpp Mutation.cpp Crossbreeding.cpp  -o main.exe

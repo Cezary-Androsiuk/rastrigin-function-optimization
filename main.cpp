@@ -7,6 +7,7 @@
 #include "Selection.hpp"
 #include "Generate.hpp"
 #include "Mutation.hpp"
+#include "Crossbreeding.hpp"
 
 
 void printData(
@@ -108,5 +109,51 @@ int main()
         printf("\n");
     }
     
+
+    std::string crossbredChromosomes[constants::populationSize];
+
+    /// Crossbred Population - Single Point
+    {
+        printf("\n" "crossbred population by single point:\n");
+
+        Crossbreeding::multipoint(chromosomes, crossbredChromosomes, 1);
+        Generate::generateFunctionValues(crossbredChromosomes, functionInputs, functionOutputs);
+
+        printData(crossbredChromosomes, functionInputs, functionOutputs);
+        printf("\n");
+    }
+    
+    /// Crossbred Population - Double Point
+    {
+        printf("\n" "crossbred population by double point:\n");
+
+        Crossbreeding::multipoint(chromosomes, crossbredChromosomes, 2);
+        Generate::generateFunctionValues(crossbredChromosomes, functionInputs, functionOutputs);
+
+        printData(crossbredChromosomes, functionInputs, functionOutputs);
+        printf("\n");
+    }
+    
+    /// Crossbred Population - Multi Point
+    {
+        printf("\n" "crossbred population by Multi point:\n");
+
+        Crossbreeding::multipoint(chromosomes, crossbredChromosomes, 0);
+        Generate::generateFunctionValues(crossbredChromosomes, functionInputs, functionOutputs);
+
+        printData(crossbredChromosomes, functionInputs, functionOutputs);
+        printf("\n");
+    }
+
+    /// Crossbred Population - Even Crossing
+    {
+        printf("\n" "crossbred population by even crossing:\n");
+        Crossbreeding::even(chromosomes, crossbredChromosomes);
+        Generate::generateFunctionValues(crossbredChromosomes, functionInputs, functionOutputs);
+
+        printData(crossbredChromosomes, functionInputs, functionOutputs);
+        printf("\n");
+    }
+
     printf("finished\n");
 }
