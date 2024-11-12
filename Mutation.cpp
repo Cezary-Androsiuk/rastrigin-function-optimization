@@ -55,6 +55,58 @@ void Mutation::mutation(
     }
 }
 
+void Mutation::mutation(
+    const std::string chromosomesIn[constants::populationSize],
+    vstr &chromosomesOut
+) noexcept
+{
+    std::random_device rd;
+    std::mt19937 gen(rd());
+
+    std::uniform_real_distribution<> dis(0.0, 1.0);
+
+    std::string chromosomesTemporary[constants::populationSize];
+
+    for(int i=0; i<constants::populationSize; i++)
+    {
+        do{
+            chromosomesTemporary[i].clear();
+
+            // printf("in %s\n", chromosomesIn[i].c_str());
+            for(const char c : chromosomesIn[i])
+            {
+                chromosomesTemporary[i].push_back(
+                    dis(gen) < constants::mutationProbability ?
+                    Mutation::_MutationMethods::mutateGen(c) : c
+                );
+            }
+            // printf("out %s\n\n", chromosomesTemporary[i].c_str());
+        }
+        while(!Mutation::_InternalMethods::isChromosomeStillValid(chromosomesTemporary[i]));
+    }
+
+    for(int i=0; i<constants::populationSize; i++)
+    {
+        if(chromosomesTemporary[i] == chromosomesIn[i])
+            continue;
+        
+        chromosomesOut.push_back(chromosomesTemporary[i]);
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 std::string Mutation::_InversionMethods::inversePartOfChromosome(const std::string &chromosome) noexcept
 {
     size_t m1 = rand() % chromosome.size();
@@ -110,4 +162,29 @@ void Mutation::inversion(
         }
     }
 
+}
+
+
+void Mutation::inversion(
+    const std::string chromosomesIn[constants::populationSize],
+    vstr &chromosomesOut
+) noexcept
+{
+    std::random_device rd;
+    std::mt19937 gen(rd());
+
+    std::uniform_real_distribution<> dis(0.0, 1.0);
+    
+    for(int i=0; i<constants::populationSize; i++)
+    {
+        bool inverseChromosome = dis(gen) < constants::inversionProbability;
+        if(!inverseChromosome)
+            continue;
+
+        chromosomesOut.push_back(
+            Mutation::_InversionMethods::inversePartOfChromosome(
+                chromosomesIn[i]
+            )
+        );
+    }
 }

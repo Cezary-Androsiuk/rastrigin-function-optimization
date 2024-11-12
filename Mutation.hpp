@@ -21,6 +21,11 @@ namespace Mutation{
         const std::string chromosomesIn[constants::populationSize],
         std::string chromosomesOut[constants::populationSize]
     ) noexcept;
+    
+    void mutation(
+        const std::string chromosomesIn[constants::populationSize],
+        vstr &chromosomesOut
+    ) noexcept;
 
     namespace _InversionMethods{
         std::string inversePartOfChromosome(const std::string &chromosome) noexcept;
@@ -30,6 +35,11 @@ namespace Mutation{
     void inversion(
         const std::string chromosomesIn[constants::populationSize],
         std::string chromosomesOut[constants::populationSize]
+    ) noexcept;
+    
+    void inversion(
+        const std::string chromosomesIn[constants::populationSize],
+        vstr &chromosomesOut
     ) noexcept;
 
 };

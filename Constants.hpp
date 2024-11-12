@@ -3,10 +3,18 @@
 
 #include <cstdio>
 #include <string>
+#include <vector>
+#include <array>
 #include <cmath>
 
 typedef unsigned int uint;
 typedef unsigned long long ull;
+
+typedef std::vector<uint> vuint;
+typedef const vuint & cvuint;
+
+typedef std::vector<std::string> vstr;
+typedef const vstr & cvstr;
 
 namespace constants{
     constexpr double A = 10;                    // leave it

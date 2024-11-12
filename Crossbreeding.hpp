@@ -11,9 +11,6 @@
 
 namespace Crossbreeding
 {
-    typedef std::vector<uint> vuint;
-    typedef const vuint & cvuint;
-
     namespace _InternalMethods
     {
         template <class T>
@@ -48,6 +45,12 @@ namespace Crossbreeding
         const uint limitPoints = 0
     ) noexcept;
 
+    void multipoint(
+        const std::string chromosomesIn[constants::populationSize],
+        vstr &chromosomesOut,
+        const uint limitPoints = 0
+    ) noexcept;
+
 
     namespace _EvenMethods
     {
@@ -62,6 +65,11 @@ namespace Crossbreeding
     void even(
         const std::string chromosomesIn[constants::populationSize],
         std::string chromosomesOut[constants::populationSize]
+    ) noexcept;
+
+    void even(
+        const std::string chromosomesIn[constants::populationSize],
+        vstr &chromosomesOut
     ) noexcept;
 
 }

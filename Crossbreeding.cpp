@@ -73,7 +73,7 @@ void Crossbreeding::_MultipointMethods::_randomUniqueNumbersSorted(
     std::mt19937 gen(rd());
     std::shuffle(numbers.begin(), numbers.end(), gen);
 
-    // select n first numbers
+    // select "count" first numbers
     randomNumers.clear();
     randomNumers.assign(numbers.begin(), numbers.begin() + count);
     std::sort(randomNumers.begin(), randomNumers.end());
@@ -196,6 +196,49 @@ void Crossbreeding::multipoint(
 }
 
 
+void Crossbreeding::multipoint(
+    const std::string chromosomesIn[constants::populationSize],
+    vstr &chromosomesOut,
+    const uint limitPoints
+) noexcept
+{
+    const uint chromosomesSize = chromosomesIn[0].size();
+    uint splitLinesCount;
+    if(limitPoints >= chromosomesSize)
+    {
+        splitLinesCount = chromosomesSize-1;
+        printf("warning: limitPoints is %u, but should be smaller than chromosomes size, which is %u."
+        " Set splitLinesCount as %u\n", limitPoints, chromosomesSize, chromosomesSize-1);
+    }
+    else if(limitPoints == 0)
+        splitLinesCount = (rand()%(chromosomesSize-1)) + 1;
+    else 
+        splitLinesCount = limitPoints;
+    // printf("choosed splitLinesCount: %u\n", splitLinesCount);
+
+    vuint selectedForCrossbreeding;
+    _InternalMethods::_selection(chromosomesIn, selectedForCrossbreeding);
+    // printf("selected indexes for crossbreeding:\n");
+    // for(uint chromosomeIndex : selectedForCrossbreeding)
+    //     printf("%u, ", chromosomeIndex);
+    // printf("\n");
+
+    uint pairsCount = selectedForCrossbreeding.size() /2;
+    for(int i=0; i<pairsCount; i+=2)
+    {
+        uint index1 = selectedForCrossbreeding[i];
+        uint index2 = selectedForCrossbreeding[i+1];
+
+        const std::string parents[2] = {chromosomesIn[index1], chromosomesIn[index2]};
+        std::string childs[2];
+
+        _MultipointMethods::_crossbreadChromosomes(parents, childs, splitLinesCount);
+        
+        chromosomesOut.push_back(childs[0]);
+        chromosomesOut.push_back(childs[1]);
+    }
+}
+
 
 
 
@@ -282,5 +325,30 @@ void Crossbreeding::even(
 
         chromosomesOut[index1] = childs[0];
         chromosomesOut[index2] = childs[1];
+    }
+}
+
+
+void Crossbreeding::even(
+    const std::string chromosomesIn[constants::populationSize],
+    vstr &chromosomesOut
+) noexcept
+{
+    vuint selectedForCrossbreeding;
+    _InternalMethods::_selection(chromosomesIn, selectedForCrossbreeding);
+    
+    uint pairsCount = selectedForCrossbreeding.size() /2;
+    for(int i=0; i<pairsCount; i+=2)
+    {
+        uint index1 = selectedForCrossbreeding[i];
+        uint index2 = selectedForCrossbreeding[i+1];
+
+        const std::string parents[2] = {chromosomesIn[index1], chromosomesIn[index2]};
+        std::string childs[2];
+
+        _EvenMethods::_crossbreadChromosomes(parents, childs);
+
+        chromosomesOut.push_back(childs[0]);
+        chromosomesOut.push_back(childs[1]);
     }
 }

@@ -22,7 +22,12 @@ namespace Generate{
         double functionInputs[constants::populationSize][constants::n], 
         double functionOutputs[constants::populationSize]
     );
-    
+
+    void generateFunctionValues(
+        cvstr chromosomes,
+        std::vector<std::array<double, constants::n>> &functionInputs,
+        std::vector<double> &functionOutputs
+    );
 };
 
 #endif // GENERATE_HPP
