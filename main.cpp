@@ -8,7 +8,7 @@
 #include "Generate.hpp"
 #include "Mutation.hpp"
 #include "Crossbreeding.hpp"
-
+#include "Succession.hpp"
 
 void printData(
     const std::string chromosomes[constants::populationSize], 
@@ -50,11 +50,20 @@ void printData(
     }
 }
 
-
-int main()
+void printData(const std::string chromosomes[constants::populationSize])
 {
-    srand(time(0));
-    
+    double functionInputs[constants::populationSize][constants::n];
+    double functionOutputs[constants::populationSize];
+
+    Generate::generateFunctionValues(chromosomes, functionInputs, functionOutputs);
+
+    printf("\n" "generated values:\n");
+    printData(chromosomes, functionInputs, functionOutputs);
+    printf("\n");
+}
+
+void runFunctions()
+{
     std::string chromosomes[constants::populationSize];
 
     double functionInputs[constants::populationSize][constants::n];
@@ -70,7 +79,7 @@ int main()
         printf("\n");
     }
 
-    
+    /// Selection
     {
         std::string selectedChromosomes[constants::populationSize];
 
@@ -83,7 +92,6 @@ int main()
             printf("\n");
         }
 
-
         /// Selected Population - Ranking
         {
             Selection::ranking(chromosomes, functionOutputs, selectedChromosomes);
@@ -94,7 +102,6 @@ int main()
             printf("\n");
         }
 
-
         /// Selected Population - Roulette
         {
             Selection::roulette(chromosomes, functionOutputs, selectedChromosomes);
@@ -104,8 +111,10 @@ int main()
             printData(selectedChromosomes, functionInputs, functionOutputs);
             printf("\n");
         }
-
-        
+    }
+    
+    /// Mutation
+    {
         std::string mutatedChromosomes[constants::populationSize];
 
         /// Mutated Population - Mutation
@@ -118,7 +127,6 @@ int main()
             printf("\n");
         }
 
-
         /// Mutated Population - Inversion
         {
             Mutation::inversion(chromosomes ,mutatedChromosomes);
@@ -128,7 +136,10 @@ int main()
             printData(mutatedChromosomes, functionInputs, functionOutputs);
             printf("\n");
         }
+    }
 
+    /// Crossbreeding
+    {
         std::string crossbredChromosomes[constants::populationSize];
 
         /// Crossbred Population - Single Point
@@ -174,9 +185,9 @@ int main()
             printf("\n");
         }
     }
-
+    
+    /// For Epochs...
     {
-        
         vstr mutatedChromosomes;
         std::vector<std::array<double, constants::n>> functionInputs;
         std::vector<double> functionOutputs;
@@ -205,17 +216,73 @@ int main()
 
         vstr crossbredChromosomes;
 
-        /// Crossbred Population - Single Point
+        /// Crossbred Population - Double Point
         {
-            printf("\n" "crossbred population by single point:\n");
+            printf("\n" "crossbred population by Double point:\n");
 
-            Crossbreeding::multipoint(chromosomes, crossbredChromosomes, 1);
+            Crossbreeding::multipoint(chromosomes, crossbredChromosomes, 2);
             Generate::generateFunctionValues(crossbredChromosomes, functionInputs, functionOutputs);
 
             printData(crossbredChromosomes, functionInputs, functionOutputs);
             printf("\n");
         }
     }
+}
+
+void launchEpochs()
+{
+    std::string chromosomes[constants::populationSize];
+
+    /// Random Population
+    {
+        Generate::generateChromosomes(chromosomes);
+        printData(chromosomes);
+    }
+    
+    for(int i=0; i<100; i++)
+    {
+        fprintf(stderr, "epoch: %d\n", i+1);
+        printf("epoch: %d\n", i+1);
+        std::string selectedChromosomes[constants::populationSize]; // used by mutation and crossbreeding
+        
+        double functionInputs[constants::populationSize][constants::n];
+        double functionOutputs[constants::populationSize];
+        Generate::generateFunctionValues(chromosomes, functionInputs, functionOutputs); // add to selection methods or better delete from Succession and rebuild 
+
+        fprintf(stderr, "tournament:\n");
+        Selection::tournament(chromosomes, functionOutputs, selectedChromosomes);
+
+
+        vstr chromosomesMutated;
+        fprintf(stderr, "mutation:\n");
+        Mutation::mutation(selectedChromosomes, chromosomesMutated);
+        
+        vstr chromosomesInverted;
+        fprintf(stderr, "inversion:\n");
+        Mutation::inversion(selectedChromosomes, chromosomesInverted);
+
+        vstr chromosomesCrossbred;
+        fprintf(stderr, "multipoint:\n");
+        Crossbreeding::multipoint(selectedChromosomes, chromosomesCrossbred, 5);
+
+        fprintf(stderr, "squeeze:\n");
+        Succession::elite(chromosomes, chromosomesMutated, chromosomesInverted, chromosomesCrossbred, chromosomes);
+        // output can be the same array as input, because array is copied before any changes on it
+        
+        printData(chromosomes);
+        
+    }
+}
+
+int main()
+{
+    srand(time(0));
+    
+    // runFunctions();
+    
+    launchEpochs();
+
+    
 
     printf("finished\n");
 }
