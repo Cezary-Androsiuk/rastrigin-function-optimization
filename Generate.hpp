@@ -22,10 +22,20 @@ namespace Generate{
         double functionInputs[constants::populationSize][constants::n], 
         double functionOutputs[constants::populationSize]
     );
+    
+    void generateFunctionValues(
+        const std::string chromosomes[constants::populationSize],  
+        double functionOutputs[constants::populationSize]
+    );
 
     void generateFunctionValues(
         cvstr chromosomes,
         std::vector<std::array<double, constants::n>> &functionInputs,
+        std::vector<double> &functionOutputs
+    );
+    
+    void generateFunctionValues(
+        cvstr chromosomes,
         std::vector<double> &functionOutputs
     );
 };

@@ -103,10 +103,9 @@ void Succession::elite(
         chromosomesIn, chromosomesMutated, chromosomesInverted, chromosomesCrossbreed, 
         chromosomesCombined);
         
-    std::vector<std::array<double, constants::n>> functionInputs; // not used
     std::vector<double> functionOutputs;
 
-    Generate::generateFunctionValues(chromosomesCombined, functionInputs, functionOutputs);
+    Generate::generateFunctionValues(chromosomesCombined, functionOutputs);
 
     if(constants::lookingFor == Target::Maximum)
         _EliteInternalMethods::eliteMaximum(chromosomesCombined, functionOutputs, chromosomesOut);
@@ -174,10 +173,9 @@ void Succession::squeeze(
         chromosomesIn, chromosomesMutated, chromosomesInverted, chromosomesCrossbreed, 
         chromosomesCombined);
 
-    std::vector<std::array<double, constants::n>> functionInputs; // not used
     std::vector<double> functionOutputs;
 
-    Generate::generateFunctionValues(chromosomesCombined, functionInputs, functionOutputs);
+    Generate::generateFunctionValues(chromosomesCombined, functionOutputs);
 
     //  auto sorts itself in ascending order (firsts elements are the smallest)
     std::multimap<double, std::string> map; // order is not important

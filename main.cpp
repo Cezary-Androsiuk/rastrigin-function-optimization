@@ -246,9 +246,8 @@ void launchTrivialEpochs()
         printf("epoch: %d\n", i+1);
         std::string selectedChromosomes[constants::populationSize];
         
-        double functionInputs[constants::populationSize][constants::n];
         double functionOutputs[constants::populationSize];
-        Generate::generateFunctionValues(chromosomes, functionInputs, functionOutputs); // add to selection methods or better delete from Succession and rebuild 
+        Generate::generateFunctionValues(chromosomes, functionOutputs);
 
         // fprintf(stderr, "tournament:\n");
         Selection::ranking(chromosomes, functionOutputs, selectedChromosomes);
@@ -259,10 +258,10 @@ void launchTrivialEpochs()
         
         std::string chromosomesInverted[constants::populationSize];
         // fprintf(stderr, "inversion:\n");
-        Mutation::inversion(selectedChromosomes, chromosomesInverted);
+        Mutation::inversion(chromosomesMutated, chromosomesInverted);
 
         // fprintf(stderr, "multipoint:\n");
-        Crossbreeding::multipoint(selectedChromosomes, chromosomes, 5);
+        Crossbreeding::multipoint(chromosomesInverted, chromosomes, 5);
 
         printData(chromosomes);
         
@@ -285,9 +284,8 @@ void launchEpochs()
         printf("epoch: %d\n", i+1);
         std::string selectedChromosomes[constants::populationSize]; // used by mutation and crossbreeding
         
-        double functionInputs[constants::populationSize][constants::n];
         double functionOutputs[constants::populationSize];
-        Generate::generateFunctionValues(chromosomes, functionInputs, functionOutputs); // add to selection methods or better delete from Succession and rebuild 
+        Generate::generateFunctionValues(chromosomes, functionOutputs);
 
         // fprintf(stderr, "tournament:\n");
         Selection::ranking(chromosomes, functionOutputs, selectedChromosomes);
@@ -320,8 +318,8 @@ int main()
     
     // runFunctions();
     
-    launchTrivialEpochs();
-    // launchEpochs();
+    // launchTrivialEpochs();
+    launchEpochs();
 
     
 

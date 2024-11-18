@@ -79,7 +79,7 @@ void Generate::generateFunctionValues(
     double functionOutputs[constants::populationSize]
 )
 {
-    printf("generating function values...");
+    // printf("generating function values...");
     for(int i=0; i<constants::populationSize; i++)
     {
         ull readedGens = 0;
@@ -101,7 +101,38 @@ void Generate::generateFunctionValues(
 
         functionOutputs[i] = function(functionInputs[i]);
     }
-    printf("\r" "function values generated!   \n");
+    // printf("\r" "function values generated!   \n");
+}
+
+void Generate::generateFunctionValues(
+    const std::string chromosomes[constants::populationSize], 
+    double functionOutputs[constants::populationSize]
+)
+{
+    // printf("generating function values...");
+    for(int i=0; i<constants::populationSize; i++)
+    {
+        ull readedGens = 0;
+        double functionInputs[constants::n];
+        for(int j=0; j<constants::n; j++)
+        {
+            ull m = partOfChromosomeBitsRequired(j);
+            std::string partOfChromosome = chromosomes[i].substr(readedGens, m);
+            readedGens += m;
+
+            ull partOfChromosomeValue = translateStringToBinary(partOfChromosome);
+
+            double rangeSize = constants::ranges[j].b - constants::ranges[j].a;
+            double valuePossibilities = (pow(2, m) - 1); // how much values can be represented by this partOfChromosome
+            double ratio = (rangeSize * partOfChromosomeValue) / valuePossibilities;
+            double normalizedFunctionArgument = constants::ranges[j].a + ratio;
+            
+            functionInputs[j] = normalizedFunctionArgument;
+        }
+
+        functionOutputs[i] = function(functionInputs);
+    }
+    // printf("\r" "function values generated!   \n");
 }
 
 void Generate::generateFunctionValues(
@@ -110,7 +141,7 @@ void Generate::generateFunctionValues(
     std::vector<double> &functionOutputs
 )
 {
-    printf("generating function values...");
+    // printf("generating function values...");
     for(int i=0; i<chromosomes.size(); i++)
     {
         ull readedGens = 0;
@@ -133,5 +164,36 @@ void Generate::generateFunctionValues(
 
         functionOutputs.push_back( function(functionInputs[i].data()) );
     }
-    printf("\r" "function values generated!   \n");
+    // printf("\r" "function values generated!   \n");
+}
+
+void Generate::generateFunctionValues(
+    cvstr chromosomes,
+    std::vector<double> &functionOutputs
+)
+{
+    // printf("generating function values...");
+    for(int i=0; i<chromosomes.size(); i++)
+    {
+        ull readedGens = 0;
+        double functionInputs[constants::n];
+        for(int j=0; j<constants::n; j++)
+        {
+            ull m = partOfChromosomeBitsRequired(j);
+            std::string partOfChromosome = chromosomes[i].substr(readedGens, m);
+            readedGens += m;
+
+            ull partOfChromosomeValue = translateStringToBinary(partOfChromosome);
+
+            double rangeSize = constants::ranges[j].b - constants::ranges[j].a;
+            double valuePossibilities = (pow(2, m) - 1); // how much values can be represented by this partOfChromosome
+            double ratio = (rangeSize * partOfChromosomeValue) / valuePossibilities;
+            double normalizedFunctionArgument = constants::ranges[j].a + ratio;
+            
+            functionInputs[j] = normalizedFunctionArgument;
+        }
+
+        functionOutputs.push_back( function(functionInputs) );
+    }
+    // printf("\r" "function values generated!   \n");
 }
