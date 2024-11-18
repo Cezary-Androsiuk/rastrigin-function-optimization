@@ -229,6 +229,46 @@ void runFunctions()
     }
 }
 
+
+void launchTrivialEpochs()
+{
+    std::string chromosomes[constants::populationSize];
+
+    /// Random Population
+    {
+        Generate::generateChromosomes(chromosomes);
+        printData(chromosomes);
+    }
+    
+    for(int i=0; i<1000; i++)
+    {
+        fprintf(stderr, "epoch: %d\n", i+1);
+        printf("epoch: %d\n", i+1);
+        std::string selectedChromosomes[constants::populationSize];
+        
+        double functionInputs[constants::populationSize][constants::n];
+        double functionOutputs[constants::populationSize];
+        Generate::generateFunctionValues(chromosomes, functionInputs, functionOutputs); // add to selection methods or better delete from Succession and rebuild 
+
+        // fprintf(stderr, "tournament:\n");
+        Selection::ranking(chromosomes, functionOutputs, selectedChromosomes);
+
+        std::string chromosomesMutated[constants::populationSize];
+        // fprintf(stderr, "mutation:\n");
+        Mutation::mutation(selectedChromosomes, chromosomesMutated);
+        
+        std::string chromosomesInverted[constants::populationSize];
+        // fprintf(stderr, "inversion:\n");
+        Mutation::inversion(selectedChromosomes, chromosomesInverted);
+
+        // fprintf(stderr, "multipoint:\n");
+        Crossbreeding::multipoint(selectedChromosomes, chromosomes, 5);
+
+        printData(chromosomes);
+        
+    }
+}
+
 void launchEpochs()
 {
     std::string chromosomes[constants::populationSize];
@@ -239,7 +279,7 @@ void launchEpochs()
         printData(chromosomes);
     }
     
-    for(int i=0; i<100; i++)
+    for(int i=0; i<1000; i++)
     {
         fprintf(stderr, "epoch: %d\n", i+1);
         printf("epoch: %d\n", i+1);
@@ -249,24 +289,24 @@ void launchEpochs()
         double functionOutputs[constants::populationSize];
         Generate::generateFunctionValues(chromosomes, functionInputs, functionOutputs); // add to selection methods or better delete from Succession and rebuild 
 
-        fprintf(stderr, "tournament:\n");
-        Selection::tournament(chromosomes, functionOutputs, selectedChromosomes);
+        // fprintf(stderr, "tournament:\n");
+        Selection::ranking(chromosomes, functionOutputs, selectedChromosomes);
 
 
         vstr chromosomesMutated;
-        fprintf(stderr, "mutation:\n");
+        // fprintf(stderr, "mutation:\n");
         Mutation::mutation(selectedChromosomes, chromosomesMutated);
         
         vstr chromosomesInverted;
-        fprintf(stderr, "inversion:\n");
+        // fprintf(stderr, "inversion:\n");
         Mutation::inversion(selectedChromosomes, chromosomesInverted);
 
         vstr chromosomesCrossbred;
-        fprintf(stderr, "multipoint:\n");
+        // fprintf(stderr, "multipoint:\n");
         Crossbreeding::multipoint(selectedChromosomes, chromosomesCrossbred, 5);
 
-        fprintf(stderr, "squeeze:\n");
-        Succession::elite(chromosomes, chromosomesMutated, chromosomesInverted, chromosomesCrossbred, chromosomes);
+        // fprintf(stderr, "squeeze:\n");
+        Succession::squeeze(chromosomes, chromosomesMutated, chromosomesInverted, chromosomesCrossbred, chromosomes);
         // output can be the same array as input, because array is copied before any changes on it
         
         printData(chromosomes);
@@ -280,7 +320,8 @@ int main()
     
     // runFunctions();
     
-    launchEpochs();
+    launchTrivialEpochs();
+    // launchEpochs();
 
     
 

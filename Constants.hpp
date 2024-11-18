@@ -32,8 +32,8 @@ struct Range{
 
 namespace constants{ //* can be modified to adjust program
     constexpr uint n = 2;                           //*  n represents how many dimentions Restring function has // remember to change ranges
-    constexpr uint accuracy = 6;                    //* can be changed, but 6 will be the best choice I guess
-    constexpr uint populationSize = 10;             //* how many chromosomes belongs to the population
+    constexpr uint accuracy = 15;                    //* can be changed, but 6 will be the best choice I guess
+    constexpr uint populationSize = 100;             //* how many chromosomes belongs to the population
     constexpr Range ranges[constants::n] = {        //* ranges limits the value that will be passed as a parameter for the Restring function (for each dimention)
         {-1, 1},
         {-1, 1},
@@ -44,7 +44,7 @@ namespace constants{ //* can be modified to adjust program
     constexpr uint groupSize = 2;                   //* represents amount of chromosomes in one group, need to be less than populationSize, prefered is 2
 
     // mutation
-    constexpr double mutationProbability = 0.03;
+    constexpr double mutationProbability = 0.3;
     constexpr double inversionProbability = 0.15;
 
     // crossbreeding
