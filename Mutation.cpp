@@ -67,6 +67,7 @@ void Mutation::mutation(
 
     std::string chromosomesTemporary[constants::populationSize];
 
+    int j=0;
     for(int i=0; i<constants::populationSize; i++)
     {
         do{
@@ -80,10 +81,12 @@ void Mutation::mutation(
                     Mutation::_MutationMethods::mutateGen(c) : c
                 );
             }
+            j++;
             // printf("out %s\n\n", chromosomesTemporary[i].c_str());
         }
         while(!Mutation::_InternalMethods::isChromosomeStillValid(chromosomesTemporary[i]));
     }
+    fprintf(stderr, "j %d\n", j);
 
     for(int i=0; i<constants::populationSize; i++)
     {
