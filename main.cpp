@@ -62,6 +62,29 @@ void printData(const std::string chromosomes[constants::populationSize])
     printf("\n");
 }
 
+void printDataSummary(const std::string chromosomes[constants::populationSize])
+{
+    double functionInputs[constants::populationSize][constants::n];
+    double functionOutputs[constants::populationSize];
+
+    Generate::generateFunctionValues(chromosomes, functionInputs, functionOutputs);
+
+    double sum=0;
+    double max=__DBL_MIN__;
+    double min=__DBL_MAX__;
+
+    for(int i=0; i<constants::populationSize; i++)
+    {
+        double value = functionOutputs[i];
+        if(max<value) max = value;
+        if(min>value) min = value;
+        sum += value;
+    }
+    double mean = sum / static_cast<double>(constants::populationSize);
+
+    printf("\n" "mean: %g, max: %g, min: %g\n", mean, max, min);
+}
+
 void runFunctions()
 {
     std::string chromosomes[constants::populationSize];
@@ -268,48 +291,69 @@ void launchTrivialEpochs()
     }
 }
 
-void launchEpochs()
+void launchEpochs(int epochs)
 {
     std::string chromosomes[constants::populationSize];
 
     /// Random Population
     {
         Generate::generateChromosomes(chromosomes);
-        printData(chromosomes);
+        // printData(chromosomes);
     }
-    
-    for(int i=0; i<1000; i++)
+    double epochsSum = 0;
+    for(int i=0; i<epochs; i++)
     {
-        fprintf(stderr, "epoch: %d\n", i+1);
-        printf("epoch: %d\n", i+1);
+        fprintf(stderr, "epoch: %d/%d\n", i+1, epochs);
+        // printf("epoch: %d\n", i+1);
         std::string selectedChromosomes[constants::populationSize]; // used by mutation and crossbreeding
         
         double functionOutputs[constants::populationSize];
         Generate::generateFunctionValues(chromosomes, functionOutputs);
 
-        fprintf(stderr, "tournament:\n");
-        Selection::ranking(chromosomes, functionOutputs, selectedChromosomes);
+        // fprintf(stderr, "tournament:\n");
+        Selection::tournament(chromosomes, functionOutputs, selectedChromosomes);
 
 
         vstr chromosomesMutated;
-        fprintf(stderr, "mutation:\n");
+        // fprintf(stderr, "mutation:\n");
         Mutation::mutation(selectedChromosomes, chromosomesMutated);
         
         vstr chromosomesInverted;
-        fprintf(stderr, "inversion:\n");
+        // fprintf(stderr, "inversion:\n");
         Mutation::inversion(selectedChromosomes, chromosomesInverted);
 
         vstr chromosomesCrossbred;
-        fprintf(stderr, "multipoint:\n");
-        Crossbreeding::multipoint(selectedChromosomes, chromosomesCrossbred, 5);
+        // fprintf(stderr, "multipoint:\n");
+        Crossbreeding::multipoint(selectedChromosomes, chromosomesCrossbred, 1);
 
-        fprintf(stderr, "squeeze:\n");
-        Succession::squeeze(chromosomes, chromosomesMutated, chromosomesInverted, chromosomesCrossbred, chromosomes);
+        // fprintf(stderr, "elite:\n");
+        Succession::elite(chromosomes, chromosomesMutated, chromosomesInverted, chromosomesCrossbred, chromosomes);
         // output can be the same array as input, because array is copied before any changes on it
         
-        printData(chromosomes);
-        
+
+        double functionOutputs2[constants::populationSize];
+
+        Generate::generateFunctionValues(chromosomes, functionOutputs2);
+
+        double sum=0;
+        // double max=__DBL_MIN__;
+        // double min=__DBL_MAX__;
+
+        for(int i=0; i<constants::populationSize; i++)
+        {
+            // double value = functionOutputs2[i];
+            // if(max<value) max = value;
+            // if(min>value) min = value;
+            sum += functionOutputs2[i];
+        }
+        double mean = sum / static_cast<double>(constants::populationSize);
+        epochsSum += mean;
+        // printf("\n" "mean: %g, max: %g, min: %g\n", mean, max, min);
+
+        // printDataSummary(chromosomes);
     }
+    double epochsMean = epochsSum / static_cast<double>(epochs);
+    printf("\n" "populationSize: %d, epochs: %d, mean: %g\n", constants::populationSize, epochs, epochsMean);
 }
 
 int main()
@@ -319,7 +363,10 @@ int main()
     // runFunctions();
     
     // launchTrivialEpochs();
-    launchEpochs();
+
+    int epochs[6] = {10, 50, 100, 200, 500, 1000};
+    for(int i=0; i<6; i++)
+        launchEpochs(epochs[i]);
 
     
 

@@ -86,7 +86,7 @@ void Mutation::mutation(
         }
         while(!Mutation::_InternalMethods::isChromosomeStillValid(chromosomesTemporary[i]));
     }
-    fprintf(stderr, "j %d\n", j);
+    // fprintf(stderr, "j %d\n", j);
 
     for(int i=0; i<constants::populationSize; i++)
     {

@@ -1,0 +1,341 @@
+generating chromosomes...
+chromosomes generated!   
+
+p_k: 0.1, epochs: 10, mean: 20.3305
+generating chromosomes...
+chromosomes generated!   
+
+p_k: 0.1, epochs: 50, mean: 20.7775
+generating chromosomes...
+chromosomes generated!   
+
+p_k: 0.1, epochs: 100, mean: 20.8425
+generating chromosomes...
+chromosomes generated!   
+
+p_k: 0.1, epochs: 200, mean: 20.8679
+generating chromosomes...
+chromosomes generated!   
+
+p_k: 0.1, epochs: 500, mean: 20.8905
+generating chromosomes...
+chromosomes generated!   
+
+p_k: 0.1, epochs: 1000, mean: 20.8968
+finished
+mean:      
+
+
+
+
+
+generating chromosomes...
+chromosomes generated!   
+
+p_k: 0.2, epochs: 10, mean: 20.3538
+generating chromosomes...
+chromosomes generated!   
+
+p_k: 0.2, epochs: 50, mean: 20.8008
+generating chromosomes...
+chromosomes generated!   
+
+p_k: 0.2, epochs: 100, mean: 20.8423
+generating chromosomes...
+chromosomes generated!   
+
+p_k: 0.2, epochs: 200, mean: 20.8742
+generating chromosomes...
+chromosomes generated!   
+
+p_k: 0.2, epochs: 500, mean: 20.8912
+generating chromosomes...
+chromosomes generated!   
+
+p_k: 0.2, epochs: 1000, mean: 20.8975
+finished
+mean:      
+
+
+
+
+
+generating chromosomes...
+chromosomes generated!   
+
+p_k: 0.3, epochs: 10, mean: 20.3847
+generating chromosomes...
+chromosomes generated!   
+
+p_k: 0.3, epochs: 50, mean: 20.8044
+generating chromosomes...
+chromosomes generated!   
+
+p_k: 0.3, epochs: 100, mean: 20.8483
+generating chromosomes...
+chromosomes generated!   
+
+p_k: 0.3, epochs: 200, mean: 20.8752
+generating chromosomes...
+chromosomes generated!   
+
+p_k: 0.3, epochs: 500, mean: 20.8907
+generating chromosomes...
+chromosomes generated!   
+
+p_k: 0.3, epochs: 1000, mean: 20.8977
+finished
+mean:      
+
+
+
+
+
+generating chromosomes...
+chromosomes generated!   
+
+p_k: 0.4, epochs: 10, mean: 20.4544
+generating chromosomes...
+chromosomes generated!   
+
+p_k: 0.4, epochs: 50, mean: 20.7995
+generating chromosomes...
+chromosomes generated!   
+
+p_k: 0.4, epochs: 100, mean: 20.8532
+generating chromosomes...
+chromosomes generated!   
+
+p_k: 0.4, epochs: 200, mean: 20.8806
+generating chromosomes...
+chromosomes generated!   
+
+p_k: 0.4, epochs: 500, mean: 20.8933
+generating chromosomes...
+chromosomes generated!   
+
+p_k: 0.4, epochs: 1000, mean: 20.8981
+finished
+mean:      
+
+
+
+
+
+generating chromosomes...
+chromosomes generated!   
+
+p_k: 0.5, epochs: 10, mean: 20.4308
+generating chromosomes...
+chromosomes generated!   
+
+p_k: 0.5, epochs: 50, mean: 20.8093
+generating chromosomes...
+chromosomes generated!   
+
+p_k: 0.5, epochs: 100, mean: 20.8535
+generating chromosomes...
+chromosomes generated!   
+
+p_k: 0.5, epochs: 200, mean: 20.8801
+generating chromosomes...
+chromosomes generated!   
+
+p_k: 0.5, epochs: 500, mean: 20.8938
+generating chromosomes...
+chromosomes generated!   
+
+p_k: 0.5, epochs: 1000, mean: 20.8981
+finished
+mean:      
+
+
+
+
+
+generating chromosomes...
+chromosomes generated!   
+
+p_k: 0.6, epochs: 10, mean: 20.5078
+generating chromosomes...
+chromosomes generated!   
+
+p_k: 0.6, epochs: 50, mean: 20.8256
+generating chromosomes...
+chromosomes generated!   
+
+p_k: 0.6, epochs: 100, mean: 20.8601
+generating chromosomes...
+chromosomes generated!   
+
+p_k: 0.6, epochs: 200, mean: 20.8803
+generating chromosomes...
+chromosomes generated!   
+
+p_k: 0.6, epochs: 500, mean: 20.8949
+generating chromosomes...
+chromosomes generated!   
+
+p_k: 0.6, epochs: 1000, mean: 20.8984
+finished
+mean:      
+
+
+
+
+
+generating chromosomes...
+chromosomes generated!   
+
+p_k: 0.7, epochs: 10, mean: 20.4942
+generating chromosomes...
+chromosomes generated!   
+
+p_k: 0.7, epochs: 50, mean: 20.8219
+generating chromosomes...
+chromosomes generated!   
+
+p_k: 0.7, epochs: 100, mean: 20.8674
+generating chromosomes...
+chromosomes generated!   
+
+p_k: 0.7, epochs: 200, mean: 20.8814
+generating chromosomes...
+chromosomes generated!   
+
+p_k: 0.7, epochs: 500, mean: 20.8937
+generating chromosomes...
+chromosomes generated!   
+
+p_k: 0.7, epochs: 1000, mean: 20.8987
+finished
+mean:      
+
+
+
+
+
+generating chromosomes...
+chromosomes generated!   
+
+p_k: 0.8, epochs: 10, mean: 20.5096
+generating chromosomes...
+chromosomes generated!   
+
+p_k: 0.8, epochs: 50, mean: 20.8336
+generating chromosomes...
+chromosomes generated!   
+
+p_k: 0.8, epochs: 100, mean: 20.8648
+generating chromosomes...
+chromosomes generated!   
+
+p_k: 0.8, epochs: 200, mean: 20.8852
+generating chromosomes...
+chromosomes generated!   
+
+p_k: 0.8, epochs: 500, mean: 20.8952
+generating chromosomes...
+chromosomes generated!   
+
+p_k: 0.8, epochs: 1000, mean: 20.8986
+finished
+mean:      
+
+
+
+
+
+generating chromosomes...
+chromosomes generated!   
+
+p_k: 0.9, epochs: 10, mean: 20.5189
+generating chromosomes...
+chromosomes generated!   
+
+p_k: 0.9, epochs: 50, mean: 20.8367
+generating chromosomes...
+chromosomes generated!   
+
+p_k: 0.9, epochs: 100, mean: 20.862
+generating chromosomes...
+chromosomes generated!   
+
+p_k: 0.9, epochs: 200, mean: 20.8871
+generating chromosomes...
+chromosomes generated!   
+
+p_k: 0.9, epochs: 500, mean: 20.8951
+generating chromosomes...
+chromosomes generated!   
+
+p_k: 0.9, epochs: 1000, mean: 20.8992
+finished
+mean:      
+
+
+
+20.3305
+20.7775
+20.8425
+20.8679
+20.8905
+20.8968
+
+20.3538
+20.8008
+20.8423
+20.8742
+20.8912
+20.8975
+
+20.3847
+20.8044
+20.8483
+20.8752
+20.8907
+20.8977
+
+20.4544
+20.7995
+20.8532
+20.8806
+20.8933
+20.8981
+
+20.4308
+20.8093
+20.8535
+20.8801
+20.8938
+20.8981
+
+20.5078
+20.8256
+20.8601
+20.8803
+20.8949
+20.8984
+
+20.4942
+20.8219
+20.8674
+20.8814
+20.8937
+20.8987
+
+20.5096
+20.8336
+20.8648
+20.8852
+20.8952
+20.8986
+
+20.5189
+20.8367
+20.862
+20.8871
+20.8951
+20.8992
+
+

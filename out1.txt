@@ -1,0 +1,77 @@
+generating chromosomes...
+chromosomes generated!   
+
+populationSize: 5, epochs: 10, mean: 0.156877
+generating chromosomes...
+chromosomes generated!   
+
+populationSize: 5, epochs: 50, mean: 0.0606742
+generating chromosomes...
+chromosomes generated!   
+
+populationSize: 5, epochs: 100, mean: 0.111252
+generating chromosomes...
+chromosomes generated!   
+
+populationSize: 5, epochs: 200, mean: 0.0566842
+generating chromosomes...
+chromosomes generated!   
+
+populationSize: 5, epochs: 500, mean: 0.0238042
+generating chromosomes...
+chromosomes generated!   
+
+populationSize: 5, epochs: 1000, mean: 0.03806
+finished
+generating chromosomes...
+chromosomes generated!   
+
+populationSize: 10, epochs: 10, mean: 0.681371
+generating chromosomes...
+chromosomes generated!   
+
+populationSize: 10, epochs: 50, mean: 0.0828262
+generating chromosomes...
+chromosomes generated!   
+
+populationSize: 10, epochs: 100, mean: 0.0977222
+generating chromosomes...
+chromosomes generated!   
+
+populationSize: 10, epochs: 200, mean: 0.135671
+generating chromosomes...
+chromosomes generated!   
+
+populationSize: 10, epochs: 500, mean: 0.0376462
+generating chromosomes...
+chromosomes generated!   
+
+populationSize: 10, epochs: 1000, mean: 0.0157816
+finished
+generating chromosomes...
+chromosomes generated!   
+generating chromosomes...
+chromosomes generated!   
+
+populationSize: 20, epochs: 10, mean: 0.496703
+generating chromosomes...
+chromosomes generated!   
+
+populationSize: 20, epochs: 50, mean: 0.0944847
+generating chromosomes...
+chromosomes generated!   
+
+populationSize: 20, epochs: 100, mean: 0.0390409
+generating chromosomes...
+chromosomes generated!   
+
+populationSize: 20, epochs: 200, mean: 0.0302758
+generating chromosomes...
+chromosomes generated!   
+
+populationSize: 20, epochs: 500, mean: 0.0146715
+generating chromosomes...
+chromosomes generated!   
+
+populationSize: 20, epochs: 1000, mean: 0.0145123
+finished
